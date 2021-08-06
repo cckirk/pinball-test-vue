@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import RegionsIndex from "../views/RegionsShow.vue";
 
 Vue.use(VueRouter);
 
@@ -9,6 +10,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/regions",
+    name: "RegionsIndex",
+    component: RegionsIndex,
   },
   {
     path: "/about",
