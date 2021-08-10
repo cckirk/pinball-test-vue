@@ -1,7 +1,13 @@
 <template>
   <div class="regions-show">
      <h1>{{ message }}</h1>
-     <h4>Regions: {{ regions.name }}</h4>
+    Filter: <input v-model="searchText"/>
+    <router-link
+      v-for="(regions, index) in regions.regions"
+      v-bind:key="index.id"
+      v-bind:to="`/${regions.name}/${regions.id}`">
+      <h4>{{ regions.name }}</h4>
+    </router-link>
   </div>
 </template>
 <style>
@@ -14,7 +20,10 @@ export default {
   data: function () {
     return {
       message: "Showing you Regions",
-      regions: {},
+      regions: {
+        name: this.regionIndex(),
+      },
+      filteredRegions: [],
     };
   },
   created: function () {
@@ -28,7 +37,7 @@ export default {
       // get data from rails
       axios.get(`/regions/${this.$route.params.id}`).then((response) => {
         console.log(response.data);
-        this.post = response.data;
+        this.regions = response.data;
       });
     },
     regionIndex: function () {
@@ -37,7 +46,7 @@ export default {
       // get data from rails
       axios.get(`/regions`).then((response) => {
         console.log(response.data);
-        this.post = response.data;
+        this.regions = response.data;
       });
     },
   },
