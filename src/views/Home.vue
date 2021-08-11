@@ -22,7 +22,6 @@ export default {
     //regions index
     RegionsIndex: function () {
       axios.get("/regions").then((response) => {
-        console.log(regions);
         console.log("regionsIndex", response);
         this.regions = response.data;
       });

@@ -11,7 +11,7 @@
       <label>Password:</label>
       <input type="password" v-model="newSessionParams.password" />
     </div>
-    <input type="submit" value="Submit" />
+    <input v-on:click="submit()" type="submit" value="Submit" />
   </div>
 </template>
 
@@ -28,10 +28,12 @@ export default {
   },
   methods: {
     submit: function () {
+      var params = { email: this.newSessionParams.email, password: this.newSessionParams.password };
       axios
-        .post("/sessions", this.newSessionParams)
+        .post("/sessions", params)
         .then((response) => {
           axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
+          console.log("loged in");
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("user_id", response.data.user_id);
           this.$router.push("/regions");
