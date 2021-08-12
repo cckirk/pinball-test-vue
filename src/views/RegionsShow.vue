@@ -1,12 +1,12 @@
 <template>
   <div class="regions-show">
      <h1>{{ message }}</h1>
-    Filter: <input v-model="searchText"/>
+    Filter: <input type="Text" v-model="search" placeholder="search regions"/>
     <router-link
       v-for="(regions, index) in regions.regions"
       v-bind:key="index.id"
-      v-bind:to="`/${regions.name}/${regions.id}`">
-      <h4>{{ regions.name }}</h4>
+      v-bind:to="`/${regions.name}/locations`">
+      <h4>{{ regions.full_name }}</h4>
     </router-link>
   </div>
 </template>
@@ -23,7 +23,7 @@ export default {
       regions: {
         name: this.regionIndex(),
       },
-      filteredRegions: [],
+      search: "",
     };
   },
   created: function () {
@@ -47,6 +47,13 @@ export default {
       axios.get(`/regions`).then((response) => {
         console.log(response.data);
         this.regions = response.data;
+      });
+    },
+  },
+  computed: {
+    filteredRegions: function () {
+      return this.regions.filter((region) => {
+        return region.name.match(this.search);
       });
     },
   },

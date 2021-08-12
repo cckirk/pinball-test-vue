@@ -6,9 +6,8 @@
     <h1>high score: {{ post.high_score }}</h1>
     <h1>img_url: {{ post.img_url }}</h1>
     <p>user_id: {{ $parent.getUserId() }}</p>
-    <p>user_id: {{ post.user_id }}</p>
     <p><img v-bind:src="post.image"></p>
-    <router-link v-if="post.user_id == $parent.getUserId()" v-bind:to="`/posts/${post.id}/edit`">Edit</router-link>
+    <router-link v-if="post.user_id == $parent.getUserId()" v-bind:to="`/posts/${post.id}`">Edit</router-link>
   </div>
 </template>
 <script>
@@ -22,7 +21,6 @@ export default {
   },
   created: function () {
     this.postShow();
-    this.postIndex();
   },
   methods: {
     postShow: function () {
@@ -34,17 +32,9 @@ export default {
         this.post = response.data;
       });
     },
-    postIndex: function () {
-      console.log("showing every post");
-      console.log(this.$route);
-      axios.get(`/post`).then((response) => {
-        console.log("response.data");
-        this.post = response.data;
-      });
-    },
     postDelete: function () {
       console.log("destroying post");
-      axios.delete("/posts/${this.$route.params.id}").then((response) => {
+      axios.delete(`/posts/${this.$route.params.id}`).then((response) => {
         console.log(response.data);
         this.$router.push;
       });
