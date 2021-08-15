@@ -6,7 +6,9 @@ import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
 import Logout from "../views/Logout.vue";
 import postsShow from "../views/PostsShow.vue";
-import postsIndex from "../views/PostsIndex.vue"
+import postsIndex from "../views/PostsIndex.vue";
+import locationsIndex from "../views/LocationsIndex.vue";
+import PostCreate from "../views/PostCreate.vue";
 
 Vue.use(VueRouter);
 
@@ -17,22 +19,32 @@ const routes = [
     component: Home,
   },
   {
-    path: "/PostsIndex",
+    path: "/posts/create",
+    name: "PostCreate",
+    component: PostCreate,
+  },
+  {
+    path: "/locations/:region",
+    name: "LocationIndex",
+    component: locationsIndex,
+  },
+  {
+    path: "/postsindex",
     name: "PostsIndex",
     component: postsIndex,
   },
   {
-    path: "/PostsShow",
+    path: "/posts/:id",
     name: "PostsShow",
     component: postsShow
   },
   {
-    path: "/Logout",
+    path: "/logout",
     name: "Logout",
     component: Logout,
   },
   {
-    path: "/Signup",
+    path: "/signup",
     name: "Signup",
     component: Signup,
   },

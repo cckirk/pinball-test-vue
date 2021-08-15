@@ -4,9 +4,6 @@
     <h1>title: {{ post.title }}</h1>
     <h1>comment: {{ post.comment }}</h1>
     <h1>high score: {{ post.high_score }}</h1>
-    <h1>img_url: {{ post.img_url }}</h1>
-    <p>user_id: {{ $parent.getUserId() }}</p>
-    <p><img v-bind:src="post.image"></p>
     <router-link v-if="post.user_id == $parent.getUserId()" v-bind:to="`/posts/${post.id}`">Edit</router-link>
   </div>
 </template>

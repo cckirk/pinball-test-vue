@@ -1,12 +1,11 @@
 <template>
-  <div="locations">
+  <div class="locations">
+    <a href="/regions"><button>Return to regions</button></a>
     <div v-for="location in region.locations" v-bind:key="location.id">
-      <h1>id: {{ location.id }}</h1>
-      <h1>address: {{ location.street }}</h1>
       <h1>name: {{ location.name }}</h1>
+      <h1>address: {{ location.street }}</h1>
       <h1>city: {{ location.city }}</h1>
       <h1>zip: {{ location.zip }}</h1>
-      <h1>posts: {{ location.post }}</h1>
       <br>
     </div>
   </div>
@@ -20,7 +19,7 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      locations: {},
+      region: {},
     };
   },
   created: function () {
@@ -29,9 +28,9 @@ export default {
   methods: {
     LocationsIndex: function () {
       console.log("in index locations");
-      axios.get(`${this.$route.params.name}/locations`).then((response) => {
+      axios.get(`http://localhost:3000/locations?region=${this.$route.params.region}`).then((response) => {
         console.log(response.data);
-        this.posts = response.data;
+        this.region = response.data;
       });
     },
   },

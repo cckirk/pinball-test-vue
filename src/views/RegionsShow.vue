@@ -2,15 +2,19 @@
   <div class="regions-show">
      <h1>{{ message }}</h1>
     Filter: <input type="Text" v-model="search" placeholder="search regions"/>
-    <router-link
+    <div id="regions"
       v-for="(regions, index) in regions.regions"
-      v-bind:key="index.id"
-      v-bind:to="`/${regions.name}/locations`">
-      <h4>{{ regions.full_name }}</h4>
-    </router-link>
+      v-bind:key="index.id">
+      <h3>{{ regions.state }}</h3>
+      <router-link v-bind:to="`/locations/${regions.name}`"><h4>{{ regions.full_name }}</h4></router-link>
+    </div>
   </div>
 </template>
 <style>
+#regions {
+  line-height: 1;
+  text-align: center;
+}
 </style>
 
 <script>
@@ -20,9 +24,7 @@ export default {
   data: function () {
     return {
       message: "Showing you Regions",
-      regions: {
-        name: this.regionIndex(),
-      },
+      regions: {},
       search: "",
     };
   },
