@@ -11,7 +11,7 @@ export default {
   created: function () {
     console.log("in logout");
     delete axios.defaults.headers.common["Authorization"];
-    localStorage.setItem("jwt");
+    localStorage.removeItem("jwt");
     localStorage.removeItem("user_id");
   },
   methods: {

@@ -10,6 +10,10 @@ if (jwt) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
 }
 
+import Vue2Filters from 'vue2-filters'
+
+Vue.use(Vue2Filters)
+
 Vue.config.productionTip = false;
 
 new Vue({

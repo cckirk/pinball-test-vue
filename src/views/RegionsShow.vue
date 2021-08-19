@@ -1,12 +1,13 @@
 <template>
   <div class="regions-show">
      <h1>{{ message }}</h1>
-    Filter: <input type="Text" v-model="search" placeholder="search regions"/>
+    Filter: <input type="Text" v-model="search" placeholder="search State or Country"/>
+    <button v-on:click="filter">Filter</button>
     <div id="regions"
-      v-for="(regions, index) in regions.regions"
-      v-bind:key="index.id">
-      <h3>{{ regions.state }}</h3>
-      <router-link v-bind:to="`/locations/${regions.name}`"><h4>{{ regions.full_name }}</h4></router-link>
+      v-for="region in filteredRegions"
+      v-bind:key="region.id">
+      <h3>{{ region.state }}</h3>
+      <router-link v-bind:to="`/locations/${region.name}`"><h4>{{ region.full_name }}</h4></router-link>
     </div>
   </div>
 </template>
@@ -26,6 +27,7 @@ export default {
       message: "Showing you Regions",
       regions: {},
       search: "",
+      filteredRegions: {},
     };
   },
   created: function () {
@@ -47,15 +49,18 @@ export default {
       console.log(this.$route);
       // get data from rails
       axios.get(`/regions`).then((response) => {
-        console.log(response.data);
-        this.regions = response.data;
+        console.log(response.data.regions);
+        this.regions = response.data.regions;
+        this.filteredRegions = this.regions;
       });
     },
-  },
-  computed: {
-    filteredRegions: function () {
-      return this.regions.filter((region) => {
-        return region.name.match(this.search);
+    filter: function () {
+      console.log(this.search);
+      this.filteredRegions = [];
+      this.regions.forEach((region) => {
+        if (region.state.toLowerCase().includes(this.search.toLowerCase())) {
+          this.filteredRegions.push(region);
+        }
       });
     },
   },
