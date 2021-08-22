@@ -1,5 +1,5 @@
 <template>
-  <div class="regions-show">
+  <div class="regions-show" id="header">
      <h1>{{ message }}</h1>
     Filter: <input type="Text" v-model="search" placeholder="search State or Country"/>
     <button v-on:click="filter">Filter</button>
@@ -14,6 +14,9 @@
 <style>
 #regions {
   line-height: 1;
+  text-align: center;
+}
+#header {
   text-align: center;
 }
 </style>

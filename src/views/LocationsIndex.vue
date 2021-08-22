@@ -1,22 +1,26 @@
 <template>
-  <div class="locations">
-    <a href="/regions"><button>Return to regions</button></a>
+  <div class="locations" id="locations-data">
      Filter: <input type="Text" v-model="search" placeholder="search by city/address/zip"/>
     <button v-on:click="filter">Filter</button>
+    <br>
+    <a href="/regions"><button>Return to regions</button></a>
     <!-- <div v-for="location in filterBy(region.locations, "search address ex.(123 street.st)")" v-bind:key="location.id"> -->
     <!-- <div v-for="location in filterBy(region.locations, search)" v-bind:key="location.id"> -->
-    <div v-for="location in filterBy(region.locations, search)" v-bind:key="location.id">
+    <div v-for="location in filterBy(region.locations, search)" v-bind:key="location.id" >
       <h1>name: {{ location.name }}</h1>
       <h1>address: {{ location.street }}</h1>
       <h1>city: {{ location.city }}</h1>
       <h1>zip: {{ location.zip }}</h1>
-      <button v-on:click="saveToFavorites()">Save to Favorites</button>
+      <hr/>
       <br>
     </div>
   </div>
 </template>
 
 <style>
+#locations-data {
+  text-align: center;
+}
 </style>
 
 <script>

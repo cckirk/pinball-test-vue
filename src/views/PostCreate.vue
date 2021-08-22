@@ -1,6 +1,5 @@
 <template>
   <div class="post-create">
-    hello
     <form v-on:submit.prevent="submit()">
       <h1>Make a new Post</h1>
       <ul>

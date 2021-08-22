@@ -1,10 +1,15 @@
 <template>
-  <div class="logout">
+  <div class="logout" id="logout">
     <h1> You have Logged out</h1>
     <button v-on:click="loginRoute()">Login</button>
   </div>
 </template>
 
+<style>
+#logout {
+  text-align: center;
+}
+</style>
 <script>
 import axios from "axios";
 export default {

@@ -7,7 +7,7 @@
     <div v-for="post in filterBy(posts, search)" v-bind:key="post.id">
       <h2>{{ post.title }}</h2>
       <a v-bind:href="`posts/${post.id}`">View Details</a> |
-      <router-link v-if="post.user_id == $parent.getUserId()" v-bind:to="`/posts/${post.user_id}`">View Your Post</router-link>
+      <router-link v-if="post.user_id == $parent.getUserId()" v-bind:to="`/posts/${post.id}`">View Your Post</router-link>
       <hr>
     </div>
     <div  v-for="user in users" v-bind:key="user.id">
@@ -17,6 +17,9 @@
 </template>
 
 <style>
+#posts {
+  text-align: center;
+}
 </style>
 
 <script>
@@ -68,6 +71,13 @@ export default {
         if (post.title.toLowerCase().includes(this.search.toLowerCase())) {
           this.filteredPosts.push(post);
         }
+      });
+    },
+    PostsDelete: function () {
+      console.log("deleted this post");
+      axios.delete(`/posts/${this.$route.params.id}`).then((response) => {
+        console.log("response.data");
+        this.post = response.data;
       });
     },
   },

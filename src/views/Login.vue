@@ -1,5 +1,6 @@
 <template>
-  <div class="login">
+  <div class="login" id="login">
+    <h1>Login</h1>
     <ul>
       <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
     </ul>
@@ -16,6 +17,9 @@
 </template>
 
 <style>
+#login {
+  text-align: center;
+}
 </style>
 
 <script>

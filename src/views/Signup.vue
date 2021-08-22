@@ -1,5 +1,5 @@
 <template>
-  <div class="signup">
+  <div class="signup" id="signup">
     <form v-on:submit.prevent="submit()">      
       <h1>Signup</h1>
       <ul>
@@ -16,20 +16,22 @@
       <div>
         <label>Password:</label>
         <input type="password" v-model="newUserParams.password" />
-        <small v-if="newUserParams.password.length < 6 && newUserParams.password.length > 0">Password is too short</small>
-        <small v-if="newUserParams.password.length >= 6 && newUserParams.password.length <= 20">{{ 20 - newUserParams.password.length }} characters remaining</small>
-        <small v-if="newUserParams.password.length > 20">Password is too long</small>
         
       </div>
       <div>
-        <label>Password confirmation:</label>
+        <label>Confirm Password:</label>
         <input type="password" v-model="newUserParams.password_confirmation" />
-        <small v-if="newUserParams.password !== newUserParams.password_confirmation">Password confirmation does not match password</small>
       </div>
       <input type="submit" value="Submit" />
     </form>
   </div>
 </template>
+
+<style>
+#signup {
+  text-align: center;
+}
+</style>
 
 <script>
 import axios from "axios";

@@ -4,7 +4,8 @@
     <h1>comment: {{ post.comment }}</h1>
     <h1>high score: {{ post.high_score }}</h1>
     <router-link v-if="post.user_id == $parent.getUserId()" v-bind:to="`/posts/${post.id}`">Edit</router-link>
-    <button v-on:click="favoritePost()">Save Post to Favorites</button>
+    <router-link v-bind:to="`/PostsIndex`"><button>Return to posts</button></router-link>
+    <button v-if="post.user_id == $parent.getUserId()" v-on:click="postDelete()">Delete this post</button>
   </div>
 </template>
 <script>
@@ -19,7 +20,6 @@ export default {
   },
   created: function () {
     this.postShow();
-    this.favoritePost();
   },
   methods: {
     postShow: function () {
