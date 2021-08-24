@@ -9,6 +9,7 @@ import postsShow from "../views/PostsShow.vue";
 import postsIndex from "../views/PostsIndex.vue";
 import locationsIndex from "../views/LocationsIndex.vue";
 import PostCreate from "../views/PostCreate.vue";
+import PostEdit from "../views/PostsEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,11 @@ const routes = [
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/posts/:id/edit",
+    name: "PostsEdit",
+    component: PostEdit,
   },
   {
     path: "/posts/create",

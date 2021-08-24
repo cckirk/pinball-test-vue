@@ -5,7 +5,6 @@
             <div class="border-end bg-white" id="sidebar-wrapper">
                 <div class="sidebar-heading border-bottom bg-light">Pinball Machine Finder</div>
                 <div class="list-group list-group-flush">
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/favorites">Favorites</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/regions">Regions</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/login">Login</a>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="/logout">Logout</a>
@@ -39,6 +38,13 @@
 </template>
 
 <style>
+#wrapper {
+  background-image: url("");
+}
+#sidebar-wrapper {
+  text-align: center;
+  font-family: "ArcadeClassic", sans-serif;
+}
 </style>
 
 <script>

@@ -1,10 +1,9 @@
 <template>
   <div class="regions-show" id="header">
      <h1>{{ message }}</h1>
-    Filter: <input type="Text" v-model="search" placeholder="search State or Country"/>
-    <button v-on:click="filter">Filter</button>
+    Search by State or Country: <input type="Text" v-model="search" placeholder="State/Country"/>
     <div id="regions"
-      v-for="region in filteredRegions"
+      v-for="region in filterBy(regions, search)"
       v-bind:key="region.id">
       <h3>{{ region.state }}</h3>
       <router-link v-bind:to="`/locations/${region.name}`"><h4>{{ region.full_name }}</h4></router-link>
@@ -13,7 +12,6 @@
 </template>
 <style>
 #regions {
-  line-height: 1;
   text-align: center;
 }
 #header {
@@ -23,11 +21,12 @@
 
 <script>
 import axios from "axios";
-
+import Vue2Filters from "vue2-filters";
 export default {
+  mixins: [Vue2Filters.mixin],
   data: function () {
     return {
-      message: "Showing you Regions",
+      message: "Showing you all Regions",
       regions: {},
       search: "",
       filteredRegions: {},
@@ -39,7 +38,6 @@ export default {
   },
   methods: {
     regionShow: function () {
-      console.log("showing a single region");
       console.log(this.$route);
       // get data from rails
       axios.get(`/regions/${this.$route.params.id}`).then((response) => {
@@ -48,7 +46,6 @@ export default {
       });
     },
     regionIndex: function () {
-      console.log("showing all regions");
       console.log(this.$route);
       // get data from rails
       axios.get(`/regions`).then((response) => {

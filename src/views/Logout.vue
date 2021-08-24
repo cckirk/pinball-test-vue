@@ -14,14 +14,12 @@
 import axios from "axios";
 export default {
   created: function () {
-    console.log("in logout");
     delete axios.defaults.headers.common["Authorization"];
     localStorage.removeItem("jwt");
     localStorage.removeItem("user_id");
   },
   methods: {
     loginRoute: function () {
-      console.log("returning to login");
       this.$router.push("/login");
     },
   },

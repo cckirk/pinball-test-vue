@@ -10,6 +10,10 @@ if (jwt) {
   axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
 }
 
+import JwPagination from 'jw-vue-pagination';
+
+Vue.component('jw-pagination', JwPagination);
+
 import Vue2Filters from 'vue2-filters'
 
 Vue.use(Vue2Filters)

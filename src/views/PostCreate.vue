@@ -5,24 +5,31 @@
       <ul>
         <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
       </ul>
+      <label>Title/Theme:</label>
       <div>
-        <label>Title:</label>
-        <input type="text" v-model="newPostParams.title" />
+        <input type="text" id="inputs" v-model="newPostParams.title" />
       </div>
+      <label>Your Comment:</label>
       <div>
-        <label>Your Comment:</label>
-        <input type="text" v-model="newPostParams.comment" />
+        <textarea id="inputs" rows="4" cols="40" type="text" v-model="newPostParams.comment" />
       </div>
+      <label id="labels">Your High Score:</label>
       <div>
-        <label>Your High Score:</label>
-        <input type="text" v-model="newPostParams.high_score">
+        <input type="text" id="inputs" v-model="newPostParams.high_score">
       </div>
+      <label id="labels">Address of Machine:</label>
+      <div>
+        <input type="text" id="inputs" v-model="newPostParams.address">
+      </div>  
       <input type="submit" value="Submit" />
     </form>
   </div>
 </template>
 
 <style>
+#inputs {
+  font-family: Arial, Helvetica, sans-serif;
+}
 </style>
 
 <script>
@@ -40,7 +47,7 @@ export default {
         .post("/posts", this.newPostParams)
         .then((response) => {
           console.log(response.data);
-          this.$router.push("/posts");
+          this.$router.push("/PostsIndex");
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
